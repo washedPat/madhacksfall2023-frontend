@@ -8,6 +8,9 @@ import Listings from './components/Listings';
 import MyRentals from './components/MyRentals';
 import Profile from './components/Profile';
 import Login from './components/login/Login'
+import Register from './components/login/Register'
+import Logout from './components/login/Logout';
+import Header from './components/Header';
 // context 
 import LoggedIn from './contexts/loggedin';
 
@@ -17,31 +20,36 @@ function App() {
   const isLoggedIn = JSON.parse(sessionStorage.getItem("logged-in"));
   const [loggedIn, setLoggedIn] = useState(isLoggedIn !== null ? isLoggedIn : null);
   
-  // updates whenever loggedIn changes
+  // set sessionstorage whenever loggedIn changes
   useEffect(() => {
     sessionStorage.setItem("logged-in", JSON.stringify(loggedIn))
+    console.log(loggedIn)
   }, [loggedIn])
 
 
   function handleLogin (credentials) {
-    // this would be replaced with actual login logic
 
     if (credentials.username === '' || credentials.password === '') {
       alert('Empty values. Please input a valid username and password.');
       return false;
     }
-    
-    setLoggedIn(true);
+
+    setLoggedIn(credentials.username);
     return true
   }
   
-  function handleRegister () {
+  function handleRegister (credentials) {
     
-    setLoggedIn(true);
+    if (credentials.username === '' || credentials.password === '') {
+      alert('Empty values. Please input a valid username and password.');
+      return false;
+    }
+
+    setLoggedIn(credentials.username);
+    return true
   }
 
   function handleLogout () { 
-    // this would be replaced with actual logout logic
     setLoggedIn(null);
   }
 
@@ -49,23 +57,20 @@ function App() {
     <>
     <LoggedIn.Provider value={[loggedIn, setLoggedIn]}>
       <BrowserRouter>
+
+        <Header loggedin={loggedIn} />
         <div>
           {/* Define your routes */}
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/Listing" element = {<Listings />} />
+            <Route path="/Listings" element = {<Listings />} />
             <Route path="/MyRentals" element={<MyRentals />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Login" element={<Login onLogin={handleLogin} />}/>
-            {/* <Route path="/Logout" element= {<Logout onLogout={handleLogout} />}/>
-            <Route path='/Register' element={<Regisert onRegister={handleRegister}/>}/> */}
+            <Route path="/Logout" element= {<Logout onLogout={handleLogout} />}/>
+            <Route path='/Register' element={<Register onRegister={handleRegister}/>}/>
           </Routes>
         </div>
-
-        {/* Use the Link component for navigation */}
-        <nav>
-          <Link to="/Login">Login</Link> | <Link to="/">Home</Link> | <Link to="/Listing">Listings</Link>  | <Link to="/MyRentals">My Rentals</Link> | <Link to="/Profile">Profile</Link>
-        </nav>
       </BrowserRouter>
     </LoggedIn.Provider>
     </>
