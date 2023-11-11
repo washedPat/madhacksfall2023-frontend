@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
 import './Header.css'
-const Header = ({ loggedin }) => {
+const Header = ({ loggedIn }) => {
   return (
     <header>
       <nav>
@@ -9,7 +9,7 @@ const Header = ({ loggedin }) => {
           <Link to="/">ParknRent</Link>
         </div>
         <div className="navigation">
-          {loggedin != null ? (
+          {loggedIn != null ? (
             <Link to="/Logout">Logout</Link>
           ) : (
             <>

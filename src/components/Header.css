@@ -6,14 +6,14 @@ header {
     background-color: #f8f9fa;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    display: flex; /* Use flexbox */
-    justify-content: space-between; /* Space between logo and navigation */
-    align-items: center; /* Center items vertically */
-    padding: 0.5em 1em; /* Add some padding */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0.5em 1em;
   }
   
   body {
-    padding-top: 60px; /* Adjust this value to match your header's height */
+    padding-top: 100px; /* Adjust this value to match your header's height */
   }
   
   header .logo a {
@@ -24,11 +24,11 @@ header {
   }
   
   header .navigation {
-    margin-left: right; /* Push the navigation to the right */
+    margin-left: right; 
   }
   
   header .navigation a {
-    margin-left: 1em;
+    /* margin-left: 1em; */
     text-decoration: none;
     color: #333;
   }
