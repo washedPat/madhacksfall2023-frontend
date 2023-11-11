@@ -1,0 +1,74 @@
+/* listings.css */
+
+.mainContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #c30000; /* Dark gray background color for the entire container */
+  }
+  
+  .bodyContainer {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .filterContainer {
+    height: 75vh; /* Adjust the height as needed */
+    width: 250px; /* Adjust the width as needed */
+    background-color: rgb(7, 49, 122);
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .listingContainer {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background-color: #043806;
+    width: calc(100% - 270px); /* Adjust the width based on the filterContainer width */
+  }
+  
+  .listingCard {
+    background-color: #043806;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .listingImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .listingTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    color: rgb(255, 255, 255);
+  }
+  
+  .listingInfo {
+    color: rgb(54, 4, 4);
+    margin-top: 0.5rem;
+  }
+  
+  .listingButton {
+    background-color: #f3f3f3;
+    color: rgb(0, 0, 0);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
