@@ -55,7 +55,7 @@ function App() {
     }).then(json => {
       
       if (json.message == "OK") {
-        alert(json.message)
+        alert("You have been logged in! Please navigate to your desired section")
         setLoggedIn(json.data.username)
         return true
       }
@@ -100,6 +100,7 @@ function App() {
       
       if (json.message == "OK") {
         console.log(json) // delete later
+        alert("You have been registered and logged in! Please navigate to your desired section")
         setLoggedIn(json.data.username)
         return true
       }
