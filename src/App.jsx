@@ -23,12 +23,11 @@ function App() {
   // set sessionstorage whenever loggedIn changes
   useEffect(() => {
     sessionStorage.setItem("logged-in", JSON.stringify(loggedIn))
-    console.log(loggedIn)
   }, [loggedIn])
 
 
   function handleLogin (credentials) {
-
+    console.log("in handleLogin")
     if (credentials.username === '' || credentials.password === '') {
       alert('Empty values. Please input a valid username and password.');
       return false;
@@ -57,8 +56,7 @@ function App() {
     <>
     <LoggedIn.Provider value={[loggedIn, setLoggedIn]}>
       <BrowserRouter>
-
-        <Header loggedin={loggedIn} />
+        <Header loggedIn={loggedIn} />
         <div>
           {/* Define your routes */}
           <Routes>

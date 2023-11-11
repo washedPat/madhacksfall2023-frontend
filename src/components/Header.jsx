@@ -10,13 +10,15 @@ const Header = ({ loggedIn }) => {
         </div>
         <div className="navigation">
           {loggedIn != null ? (
+            <>
             <Link to="/Logout">Logout</Link>
+            </>
           ) : (
             <>
               <Link to="/Register">Register</Link> | <Link to="/Login">Login</Link>
             </>
           )}
-          | <Link to="/">Home</Link> | <Link to="/Listings">Listings</Link> | <Link to="/MyRentals">My Rentals</Link> | <Link to="/Profile">Profile</Link>
+          | <Link to="/Listings">Listings</Link> | <Link to="/MyRentals">My Rentals</Link> | <Link to="/Profile">Profile</Link>
         </div>
       </nav>
     </header>
