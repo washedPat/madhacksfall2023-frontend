@@ -28,10 +28,14 @@ body {
     background-color: #2d3748; /* Updated to match the background color from Next.js */
     padding: 15px;
     border-radius: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column; /* Updated to a column layout */
 }
 
+
 .listingContainer {
-    height: 65%;
+    height: 69%;
     width: 45%;
     flex-grow: 1;
     overflow-y: auto;
@@ -91,3 +95,44 @@ body {
     border-radius: 0.25rem;
     cursor: pointer;
 }
+.myListingsContainer {
+    height: 65%;
+    width: 60%; /* Adjusted width for My Listings */
+    flex-grow: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border-radius: 10px;
+    /* Hide the scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+.myListingsContainer::-webkit-scrollbar {
+    width: 12px; /* Adjust the width as needed */
+}
+
+.myListingsContainer::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Adjust the background color as needed */
+}
+
+.myListingsContainer::-webkit-scrollbar-track {
+    background-color: transparent; /* Adjust the background color as needed */
+}
+.addBookingButton {
+    height: 65%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .addButton {
+    font-size: 2rem;
+    background-color: #4caf50; /* Green background color for the button */
+    color: #fff; /* White text color for the button */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+  }
