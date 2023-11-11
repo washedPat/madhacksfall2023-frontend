@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
+import { Link } from 'react-router-dom';
 import './Header.css'
 const Header = ({ loggedIn }) => {
   return (
