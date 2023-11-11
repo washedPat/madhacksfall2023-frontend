@@ -16,7 +16,7 @@ import LoggedIn from './contexts/loggedin';
 
 
 function App() {
- 
+
   const isLoggedIn = JSON.parse(sessionStorage.getItem("logged-in"));
   const [loggedIn, setLoggedIn] = useState(isLoggedIn !== null ? isLoggedIn : null);
   
@@ -27,14 +27,43 @@ function App() {
 
 
   function handleLogin (credentials) {
-    console.log("in handleLogin")
     if (credentials.username === '' || credentials.password === '') {
       alert('Empty values. Please input a valid username and password.');
       return false;
     }
 
-    setLoggedIn(credentials.username);
-    return true
+    fetch("https://plot.fly.dev/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        "username": credentials.username,
+        "password": credentials.password,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json()
+      }
+      else if (res.status === 400) {
+        return res.json()
+      } else if (res.status === 500) {
+        return res.json()
+      }
+
+    }).then(json => {
+      
+      if (json.message == "OK") {
+        alert("You have been logged in! Please navigate to your desired section")
+        setLoggedIn(json.data.username)
+        return true
+      }
+      else {
+        alert(json.message)
+        return false
+      }
+    })
   }
   
   function handleRegister (credentials) {
@@ -44,8 +73,43 @@ function App() {
       return false;
     }
 
-    setLoggedIn(credentials.username);
-    return true
+    // setLoggedIn(credentials.username);
+    // return true
+
+    fetch("https://plot.fly.dev/api/register", {
+      method: "POST",
+      body: JSON.stringify({
+        "username": credentials.username,
+        "password": credentials.password,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json()
+      }
+      else if (res.status === 400) {
+        return res.json()
+      } else if (res.status === 500) {
+        return res.json()
+      }
+
+    }).then(json => {
+      
+      if (json.message == "OK") {
+        console.log(json) // delete later
+        alert("You have been registered and logged in! Please navigate to your desired section")
+        setLoggedIn(json.data.username)
+        return true
+      }
+      else {
+        console.log(json) // delete later
+        alert(json.message)
+        return false
+      }
+    })
   }
 
   function handleLogout () { 
