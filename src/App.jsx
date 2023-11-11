@@ -7,13 +7,18 @@ import HomePage from './components/Homepage';
 import Listings from './components/Listings';
 import MyRentals from './components/MyRentals';
 import Profile from './components/Profile';
-function App() {
 
+// context 
+import LoggedIn from './contexts/loggedin';
+
+
+function App() {
+ 
   return (
     <>
     <BrowserRouter>
       <div>
-        {/* Use the Link component for navigation */}
+        
         
 
         {/* Define your routes */}
@@ -25,6 +30,7 @@ function App() {
         </Routes>
       </div>
 
+      {/* Use the Link component for navigation */}
       <nav>
           <Link to="/">Home</Link> | <Link to="/Listing">Listings</Link>  | <Link to="/MyRentals">My Rentals</Link> | <Link to="/Profile">Profile</Link>
         </nav>
