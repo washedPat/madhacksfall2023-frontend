@@ -14,7 +14,7 @@ const Listings = () => {
   const [endDate, setEndDate] = useState('')
   
   function fetchData () {
-
+    
     const startDateISO = startDate ? new Date(startDate).toISOString() : '';
     const endDateISO = endDate ? new Date(endDate).toISOString() : '';
     
@@ -27,6 +27,8 @@ const Listings = () => {
           "address": currentStreet,
           "distance": distance,
           "spotType": parkingSize,
+
+
         }),
         headers: {
           "Content-Type": "application/json"
@@ -82,7 +84,6 @@ const Listings = () => {
             name="street"
             value={currentStreet} // Set the input value to the state variable
             onChange={handleStreetChange} // Update the state variable when the input changes
-            required
           />
           <label htmlFor="location">City:</label>
           <input
@@ -91,7 +92,6 @@ const Listings = () => {
             name="city"
             value={currentCity} // Set the input value to the state variable
             onChange={handleCityChange} // Update the state variable when the input changes
-            required
           />
           <label htmlFor="distance">Distance: {distance} miles</label>
           <input
@@ -103,7 +103,7 @@ const Listings = () => {
             step="10"
             value={distance}
             onChange={handleDistanceChange}
-            required
+            
           />
           <label htmlFor="price">Price: ${price}</label>
           <input
@@ -115,7 +115,6 @@ const Listings = () => {
             step="1"
             value={price}
             onChange={handlePriceChange}
-            required
           />
           <label htmlFor="parkingSize">Parking Spot Size:</label>
           <select
@@ -123,7 +122,6 @@ const Listings = () => {
             name="parkingSize"
             value={parkingSize}
             onChange={handleParkingSizeChange}
-            required
           >
             <option value="">Select Vehicle Type</option>
             <option value="Tight">Tight</option>
@@ -137,7 +135,6 @@ const Listings = () => {
             name="startDate"
             value={startDate}
             onChange={handleStartDateChange}
-            required
           />
 
           <label htmlFor="endDate">End Date:</label>
@@ -147,7 +144,6 @@ const Listings = () => {
             name="endDate"
             value={endDate}
             onChange={handleEndDateChange}
-            required
           />
           <button onClick={fetchData}>Load Listings</button>
         </div>
