@@ -7,8 +7,7 @@ const Listings = () => {
   const [listings, setListings] = useState([]);
   const [distance, setDistance] = useState(0);
   const [price, setPrice] = useState(0); // State for pricing
-  const [vehicleType, setVehicleType] = useState('');
-  const [electricVehicle, setElectricVehicle] = useState(false);
+  const [parkingSize, SetParkingSize] = useState('');
   const [currentStreet, setCurrentStreet] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   // start and end date
@@ -16,8 +15,7 @@ const Listings = () => {
   console.log("curr location", currentStreet, currentCity)
   console.log("distance", distance)
   console.log("price", price)
-  console.log("vt", vehicleType)
-  console.log("ev", electricVehicle)
+  console.log("vt", parkingSize)
   
   useEffect(() => {
     // Simulated data for testing without a backend
@@ -83,11 +81,8 @@ const Listings = () => {
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
   };
-  const handleVehicleTypeChange = (e) => {
-    setVehicleType(e.target.value);
-  };
-  const handleElectricVehicleToggle = (e) => {
-    setElectricVehicle(e.target.checked); // Toggle the state
+  const handleParkingSizeChange = (e) => {
+    SetParkingSize(e.target.value);
   };
   const handleStreetChange = (e) => {
     setCurrentStreet(e.target.value);
@@ -141,28 +136,19 @@ const Listings = () => {
             value={price}
             onChange={handlePriceChange}
           />
-          <label htmlFor="vehicleType">Vehicle Type:</label>
+          <label htmlFor="parkingSize">Parking Spot Size:</label>
           <select
-            id="vehicleType"
-            name="vehicleType"
-            value={vehicleType}
-            onChange={handleVehicleTypeChange}
+            id="parkingSize"
+            name="parkingSize"
+            value={parkingSize}
+            onChange={handleParkingSizeChange}
           >
             <option value="">Select Vehicle Type</option>
             <option value="Tight">Tight</option>
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-          <label htmlFor="electricVehicleToggle">Electric Vehicle:</label>
-          <div className="toggle-switch">
-            <input
-              id="electricVehicleToggle"
-              type="checkbox"
-              checked={electricVehicle}
-              onChange={handleElectricVehicleToggle}
-            />
-            <label htmlFor="electricVehicleToggle" className="toggle-label"></label>
-          </div>
+
         </div>
 
         <div className="listingContainer">
