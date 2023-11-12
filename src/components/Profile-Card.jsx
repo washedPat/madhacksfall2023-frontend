@@ -2,8 +2,8 @@
 import React from 'react';
 
 function ProfileCard({ listing }) {
-  const handleDelete = () => {
-    console.log("DELETE:", listing)
+  const handleUnbook = () => {
+    console.log("UNBOOK:", listing)
   };
 
   return (
@@ -14,8 +14,8 @@ function ProfileCard({ listing }) {
       <p className="listingInfo">Price: {listing.price}</p>
       <p className="listingInfo">Rating: {listing.rating}</p>
       {/* Call the handleEditClick function when the button is clicked */}
-      <button className="listingButton" onClick={handleDelete}>
-        Remove
+      <button className="listingButton" onClick={handleUnbook}>
+        UnBook
       </button>
     </div>
   );

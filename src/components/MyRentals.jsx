@@ -66,10 +66,10 @@ const MyRentals = () => {
     setMyListings(simulatedMyListings);
   }, []);
 
-  const handleEdit = (listing) => {
-    setSelectedListing(listing);
-    navigate('/RegisterListing');
-  };
+  // const handleEdit = (listing) => {
+  //   setSelectedListing(listing);
+  //   navigate('/RegisterListing');
+  // };
 
   return (
     <div className="mainContainer">
@@ -81,11 +81,10 @@ const MyRentals = () => {
         </div>
         <div className="myListingsContainer">
           {myListings.map((listing) => (
-            <RentalsCard key={listing._id} listing={listing} onEdit={handleEdit} />
+            <RentalsCard key={listing._id} listing={listing} />
           ))}
         </div>
       </div>
-      {error && <p>Error Code: {error}</p>}
     </div>
   );
 };

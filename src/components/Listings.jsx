@@ -10,14 +10,14 @@ const Listings = () => {
   const [parkingSize, SetParkingSize] = useState('Normal');
   const [currentStreet, setCurrentStreet] = useState('');
   const [currentCity, setCurrentCity] = useState('');
-  // start and end date
-
-  // console.log("curr location", currentStreet, currentCity)
-  // console.log("distance", distance)
-  // console.log("price", price)
-  // console.log("vt", parkingSize)
-  // console.log(listings)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  
   function fetchData () {
+
+    const startDateISO = startDate ? new Date(startDate).toISOString() : '';
+    const endDateISO = endDate ? new Date(endDate).toISOString() : '';
+    
     if (currentStreet !== '' && currentCity !== '') {
       fetch("https://plot.fly.dev/api/queryListings", {
        method: "POST",
@@ -60,7 +60,14 @@ const Listings = () => {
   const handleCityChange = (e) => {
     setCurrentCity(e.target.value);
   };
+  
+  function handleEndDateChange (e) {
+    setEndDate(e.target.value)
+  }
 
+  function handleStartDateChange (e) {
+    setStartDate(e.target.value)
+  }
 
   return (
     <div className="mainContainer">
@@ -75,6 +82,7 @@ const Listings = () => {
             name="street"
             value={currentStreet} // Set the input value to the state variable
             onChange={handleStreetChange} // Update the state variable when the input changes
+            required
           />
           <label htmlFor="location">City:</label>
           <input
@@ -83,6 +91,7 @@ const Listings = () => {
             name="city"
             value={currentCity} // Set the input value to the state variable
             onChange={handleCityChange} // Update the state variable when the input changes
+            required
           />
           <label htmlFor="distance">Distance: {distance} miles</label>
           <input
@@ -94,6 +103,7 @@ const Listings = () => {
             step="10"
             value={distance}
             onChange={handleDistanceChange}
+            required
           />
           <label htmlFor="price">Price: ${price}</label>
           <input
@@ -105,6 +115,7 @@ const Listings = () => {
             step="1"
             value={price}
             onChange={handlePriceChange}
+            required
           />
           <label htmlFor="parkingSize">Parking Spot Size:</label>
           <select
@@ -112,13 +123,33 @@ const Listings = () => {
             name="parkingSize"
             value={parkingSize}
             onChange={handleParkingSizeChange}
+            required
           >
             <option value="">Select Vehicle Type</option>
             <option value="Tight">Tight</option>
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-          <button onClick={fetchData}>Load Data</button>
+          <label htmlFor="startDate">Start Date:</label>
+          <input
+            type="date"
+            id="startDate"
+            name="startDate"
+            value={startDate}
+            onChange={handleStartDateChange}
+            required
+          />
+
+          <label htmlFor="endDate">End Date:</label>
+          <input
+            type="date"
+            id="endDate"
+            name="endDate"
+            value={endDate}
+            onChange={handleEndDateChange}
+            required
+          />
+          <button onClick={fetchData}>Load Listings</button>
         </div>
 
         <div className="listingContainer">

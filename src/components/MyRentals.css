@@ -57,7 +57,6 @@
     padding: 10px;
   }
 
-/* Style for the card container */
 .listingCard {
     border: 1px solid #aecdab;
     padding: 16px;
@@ -78,8 +77,7 @@
     object-fit: cover; /* Ensures the image covers the area without being stretched */
     margin-bottom: 8px;
   }
-  
-  /* Style for the title in the card */
+
   .listingTitle {
     font-size: 1.25rem; /* 20px */
     color: #333;
@@ -89,7 +87,7 @@
     text-overflow: ellipsis;
   }
   
-  /* Style for the info text in the card */
+
   .listingInfo {
     font-size: 1rem; /* 16px */
     color: #666;
@@ -97,7 +95,6 @@
     flex-grow: 1; /* Allows the info area to fill the space */
   }
   
-  /* Style for the button in the card */
   .listingButton {
     padding: 8px 16px;
     background-color: #126b34;
