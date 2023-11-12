@@ -16,7 +16,7 @@ const Listings = () => {
   // console.log("distance", distance)
   // console.log("price", price)
   // console.log("vt", parkingSize)
-  console.log(listings)
+  // console.log(listings)
   function fetchData () {
     if (currentStreet !== '' && currentCity !== '') {
       fetch("https://plot.fly.dev/api/queryListings", {

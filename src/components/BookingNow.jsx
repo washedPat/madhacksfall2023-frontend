@@ -7,12 +7,14 @@ function BookingNow (){
   const { listing } = location.state || {}; 
   const [bookingConfirmed, setBookingConfirmed] = useState(false); 
   const navigate = useNavigate();
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString("en-US");
 
   useEffect(() => {
     if (bookingConfirmed) {
       navigate('/');
     }
   }, [bookingConfirmed, navigate]); 
+  
   const handleConfirmBooking = () => {
     // Implement booking confirmation logic here
     // will send the listing ID and the username to the api
@@ -24,12 +26,13 @@ function BookingNow (){
   return (
     <div>
       <h1>Prepare Booking</h1>
-      <p>Title: {listing.title}</p>
-      <p>Description: {listing.description}</p>
-      <p>Price: {listing.price}</p>
-      <p>Size: {listing.parking_size}</p>
-      <p>Date: {listing.start_date} - {listing.end_date}</p>
-      <p>Address: {listing.street} {listing.city}, {listing.state}, {listing.zip} {listing.country}</p>
+      <img src={listing.photoURL} alt="Parking Spot" className="listingImage" />
+      <h3 className="listingTitle">{listing.title}</h3> {/* The JSON doesn't have a title field, so using a generic title */}
+      <p className="listingInfo">Parking Size: {listing.parkingSize}</p>
+      <p className="listingInfo">Price: ${listing.price}</p>
+      <p className="listingInfo">Description: {listing.description}</p>
+      <p className='listingInfo'>Date: {formatDate(listing.startDate)} - {formatDate(listing.endDate)}</p>
+      <p className='listingInfo'>Address: {listing.address.street}, {listing.address.city}, {listing.address.state} {listing.address.zip} {listing.address.country}</p>
       <button onClick={handleConfirmBooking}>Confirm Booking</button>
     </div>
   );
