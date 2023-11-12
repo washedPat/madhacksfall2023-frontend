@@ -6,7 +6,7 @@ const Header = ({ loggedIn }) => {
     <header>
       <nav>
         <div className="logo">
-          <Link to="/">ParknRent</Link>
+          <Link to="/">Plot</Link>
         </div>
         <div className="navigation">
           {loggedIn != null ? (

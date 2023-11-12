@@ -7,10 +7,16 @@ const Listings = () => {
   const [listings, setListings] = useState([]);
   const [distance, setDistance] = useState(0);
   const [price, setPrice] = useState(0); // State for pricing
-  const [vehicleType, setVehicleType] = useState('');
-  const [rating, setRating] = useState(0);
-  const [error, setError] = useState(null);
+  const [parkingSize, SetParkingSize] = useState('');
+  const [currentStreet, setCurrentStreet] = useState('');
+  const [currentCity, setCurrentCity] = useState('');
+  // start and end date
 
+  console.log("curr location", currentStreet, currentCity)
+  console.log("distance", distance)
+  console.log("price", price)
+  console.log("vt", parkingSize)
+  
   useEffect(() => {
     // Simulated data for testing without a backend
     const simulatedListings = [
@@ -62,63 +68,7 @@ const Listings = () => {
         price: '$22/day',
         rating: 4.0,
       },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-      
+
       // Add more simulated listings as needed
     ];
 
@@ -128,26 +78,42 @@ const Listings = () => {
   const handleDistanceChange = (e) => {
     setDistance(e.target.value);
   };
-
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
   };
-  const handleVehicleTypeChange = (e) => {
-    setVehicleType(e.target.value);
+  const handleParkingSizeChange = (e) => {
+    SetParkingSize(e.target.value);
   };
-  const handleRatingChange = (e) => {
-    setRating(e.target.value);
+  const handleStreetChange = (e) => {
+    setCurrentStreet(e.target.value);
   };
+  const handleCityChange = (e) => {
+    setCurrentCity(e.target.value);
+  };
+
 
   return (
     <div className="mainContainer">
       <div className="bodyContainer">
         <div className="filterContainer">
           {/* Side box for filtering */}
-          <label htmlFor="location">Current Location:</label>
-          <input type="text" id="location" name="location" />
-
-          {/* Distance slider */}
+          <h2>Filters</h2>
+          <label htmlFor="location">Street Address:</label>
+          <input
+            type="text"
+            id="street"
+            name="street"
+            value={currentStreet} // Set the input value to the state variable
+            onChange={handleStreetChange} // Update the state variable when the input changes
+          />
+          <label htmlFor="location">City:</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={currentCity} // Set the input value to the state variable
+            onChange={handleCityChange} // Update the state variable when the input changes
+          />
           <label htmlFor="distance">Distance: {distance} miles</label>
           <input
             type="range"
@@ -159,8 +125,6 @@ const Listings = () => {
             value={distance}
             onChange={handleDistanceChange}
           />
-
-          {/* Price slider */}
           <label htmlFor="price">Price: ${price}</label>
           <input
             type="range"
@@ -172,34 +136,19 @@ const Listings = () => {
             value={price}
             onChange={handlePriceChange}
           />
-
-          {/* Dropdown selector for vehicle type */}
-          <label htmlFor="vehicleType">Vehicle Type:</label>
+          <label htmlFor="parkingSize">Parking Spot Size:</label>
           <select
-            id="vehicleType"
-            name="vehicleType"
-            value={vehicleType}
-            onChange={handleVehicleTypeChange}
+            id="parkingSize"
+            name="parkingSize"
+            value={parkingSize}
+            onChange={handleParkingSizeChange}
           >
             <option value="">Select Vehicle Type</option>
-            <option value="SUV">SUV</option>
-            <option value="Sedan">Sedan</option>
-            <option value="EV">EV (Electric Vehicle)</option>
-            <option value="Minivan">Minivan</option>
+            <option value="Tight">Tight</option>
+            <option value="Normal">Normal</option>
+            <option value="Wide">Wide</option>
           </select>
 
-          {/* Rating slider */}
-          <label htmlFor="rating">Rating: {rating}</label>
-          <input
-            type="range"
-            id="rating"
-            name="rating"
-            min="0"
-            max="5"
-            step=".5"
-            value={rating}
-            onChange={handleRatingChange}
-          />
         </div>
 
         <div className="listingContainer">
@@ -207,9 +156,7 @@ const Listings = () => {
           <Card key={listing._id} listing={listing} /> // Use the Card component
         ))}
       </div>
-        
       </div>
-      {error && <p>Error Code: {error}</p>}
     </div>
   );
 };
