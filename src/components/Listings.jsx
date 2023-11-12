@@ -8,16 +8,15 @@ const Listings = () => {
   const [distance, setDistance] = useState(0);
   const [price, setPrice] = useState(0); // State for pricing
   const [vehicleType, setVehicleType] = useState('');
-  const [rating, setRating] = useState(0);
   const [electricVehicle, setElectricVehicle] = useState(false);
   const [currentStreet, setCurrentStreet] = useState('');
   const [currentCity, setCurrentCity] = useState('');
+  // start and end date
 
   console.log("curr location", currentStreet, currentCity)
   console.log("distance", distance)
   console.log("price", price)
   console.log("vt", vehicleType)
-  console.log("rating", rating)
   console.log("ev", electricVehicle)
   
   useEffect(() => {
@@ -87,9 +86,6 @@ const Listings = () => {
   const handleVehicleTypeChange = (e) => {
     setVehicleType(e.target.value);
   };
-  const handleRatingChange = (e) => {
-    setRating(e.target.value);
-  };
   const handleElectricVehicleToggle = (e) => {
     setElectricVehicle(e.target.checked); // Toggle the state
   };
@@ -157,17 +153,6 @@ const Listings = () => {
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-          <label htmlFor="rating">Rating: {rating}</label>
-          <input
-            type="range"
-            id="rating"
-            name="rating"
-            min="0"
-            max="5"
-            step=".5"
-            value={rating}
-            onChange={handleRatingChange}
-          />
           <label htmlFor="electricVehicleToggle">Electric Vehicle:</label>
           <div className="toggle-switch">
             <input
