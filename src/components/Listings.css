@@ -30,34 +30,25 @@
   
   /* Style for the listing container */
   .listingContainer {
+    justify-content: space-between;
     flex-grow: 1;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
   }
   
-  /* Basic style for each card */
-  .Card {
 
-    padding: 10px;
-    width: 100px; /* Width based on image size */
-    text-align: center;
-  }
-  
-  /* Style for error message */
-  .error {
-    color: red;
-    padding: 10px;
-  }
 
 /* Style for the card container */
 .listingCard {
     border: 1px solid #aecdab;
     padding: 16px;
-    width: 300px; /* Fixed width */
-    height: 500px; /* Fixed height */
+    min-width: 200px; /* Adjust the minimum width as needed */
+    width: calc(33.333% - 20px); /* Adjust width to fit 3 per row, subtracting the gap */
+    margin-bottom: 20px; /* Add some margin at the bottom */
+    min-height: 600px; /* Fixed height */
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,8 +58,8 @@
   
   /* Style for the image in the card */
   .listingImage {
-    width: 90%; /* Full width of the card */
-    height: 180px; /* Fixed height for the image */
+    width: 100%; /* Full width of the card */
+    height: auto; 
     border-radius: 4px;
     object-fit: cover; /* Ensures the image covers the area without being stretched */
     margin-bottom: 8px;

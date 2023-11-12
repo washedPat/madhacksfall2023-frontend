@@ -12,7 +12,7 @@ import Register from './components/login/Register'
 import Logout from './components/login/Logout';
 import Header from './components/Header';
 import RegisterListing from './components/register-listing';
-
+import BookingNow from './components/BookingNow'
 // context 
 import LoggedIn from './contexts/loggedin';
 
@@ -75,9 +75,6 @@ function App() {
       return false;
     }
 
-    // setLoggedIn(credentials.username);
-    // return true
-
     fetch("https://plot.fly.dev/api/register", {
       method: "POST",
       body: JSON.stringify({
@@ -134,7 +131,7 @@ function App() {
             <Route path="/Login" element={<Login onLogin={handleLogin} />}/>
             <Route path="/Logout" element= {<Logout onLogout={handleLogout} />}/>
             <Route path='/Register' element={<Register onRegister={handleRegister}/>}/>
-            
+            <Route path='/BookingNow' element={<BookingNow />} />
           </Routes>
         </div>
       </BrowserRouter>

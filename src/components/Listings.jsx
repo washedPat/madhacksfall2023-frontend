@@ -22,52 +22,36 @@ const Listings = () => {
     const simulatedListings = [
       {
         _id: '1',
+        title: "PARKING SPOT",
         imageUrl: 'https://th.bing.com/th/id/OIP.CxQ96svjDLG8m6OFPtAw9gHaJ4?pid=ImgDet&rs=1',
-        location: 'Downtown',
-        type: 'Covered',
+        parking_size: 'Tight',
         price: '$20/day',
-        rating: 4.5,
+        description: "a parking spot",
+        start_date: "11/12/2023",
+        end_date: "11/14/2023",
+        street: "5567 173rd AVE SE",
+        city: "Bellevue",
+        state: "WA",
+        country: "United States",
+        zip: "98006"
       },
+
       {
         _id: '2',
-        imageUrl: 'https://th.bing.com/th/id/OIP._YpOTfWnQq1eiYm9txDL2gHaJ4?pid=ImgDet&w=177&h=235&c=7&dpr=2',
-        location: 'Suburb',
-        type: 'Open',
-        price: '$15/day',
-        rating: 3.8,
+        title: "Another PARKING SPOT",
+        imageUrl: 'https://th.bing.com/th/id/OIP.CxQ96svjDLG8m6OFPtAw9gHaJ4?pid=ImgDet&rs=1',
+        parking_size: 'Tight',
+        price: '$50/day',
+        description: "this parking spot is LIKE SO SOS SO SOSOSOSO NICe it is worth the price",
+        start_date: "11/12/2023",
+        end_date: "11/14/2023",
+        street: "5567 173rd AVE SE",
+        city: "Bellevue",
+        state: "WA",
+        country: "United States",
+        zip: "98006"
       },
-      {
-        _id: '3',
-        imageUrl: 'URL_TO_IMAGE_3',
-        location: 'City Center',
-        type: 'Garage',
-        price: '$25/day',
-        rating: 4.2,
-      },
-      {
-        _id: '4',
-        imageUrl: 'URL_TO_IMAGE_4',
-        location: 'Waterfront',
-        type: 'Covered',
-        price: '$30/day',
-        rating: 4.9,
-      },
-      {
-        _id: '5',
-        imageUrl: 'URL_TO_IMAGE_5',
-        location: 'Parkside',
-        type: 'Open',
-        price: '$18/day',
-        rating: 3.5,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
+      
 
       // Add more simulated listings as needed
     ];
