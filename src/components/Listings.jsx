@@ -5,75 +5,43 @@ import './listings.css'; // Import the regular CSS file
 import Card from './Card';
 const Listings = () => {
   const [listings, setListings] = useState([]);
-  const [distance, setDistance] = useState(0);
-  const [price, setPrice] = useState(0); // State for pricing
-  const [parkingSize, SetParkingSize] = useState('');
+  const [distance, setDistance] = useState(100);
+  const [price, setPrice] = useState(100); // State for pricing
+  const [parkingSize, SetParkingSize] = useState('Normal');
   const [currentStreet, setCurrentStreet] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   // start and end date
 
-  console.log("curr location", currentStreet, currentCity)
-  console.log("distance", distance)
-  console.log("price", price)
-  console.log("vt", parkingSize)
-  
+  // console.log("curr location", currentStreet, currentCity)
+  // console.log("distance", distance)
+  // console.log("price", price)
+  // console.log("vt", parkingSize)
+  console.log(listings)
+  function fetchData () {
+    if (currentStreet !== '' && currentCity !== '') {
+      fetch("https://plot.fly.dev/api/queryListings", {
+       method: "POST",
+        body: JSON.stringify({
+          "maxPrice": price,
+          "city": currentCity,
+          "address": currentStreet,
+          "distance": distance,
+          "spotType": parkingSize,
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => setListings(data));
+    }
+  };
+
+  // Call fetchData when component mounts
   useEffect(() => {
-    // Simulated data for testing without a backend
-    const simulatedListings = [
-      {
-        _id: '1',
-        imageUrl: 'https://th.bing.com/th/id/OIP.CxQ96svjDLG8m6OFPtAw9gHaJ4?pid=ImgDet&rs=1',
-        location: 'Downtown',
-        type: 'Covered',
-        price: '$20/day',
-        rating: 4.5,
-      },
-      {
-        _id: '2',
-        imageUrl: 'https://th.bing.com/th/id/OIP._YpOTfWnQq1eiYm9txDL2gHaJ4?pid=ImgDet&w=177&h=235&c=7&dpr=2',
-        location: 'Suburb',
-        type: 'Open',
-        price: '$15/day',
-        rating: 3.8,
-      },
-      {
-        _id: '3',
-        imageUrl: 'URL_TO_IMAGE_3',
-        location: 'City Center',
-        type: 'Garage',
-        price: '$25/day',
-        rating: 4.2,
-      },
-      {
-        _id: '4',
-        imageUrl: 'URL_TO_IMAGE_4',
-        location: 'Waterfront',
-        type: 'Covered',
-        price: '$30/day',
-        rating: 4.9,
-      },
-      {
-        _id: '5',
-        imageUrl: 'URL_TO_IMAGE_5',
-        location: 'Parkside',
-        type: 'Open',
-        price: '$18/day',
-        rating: 3.5,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
+    fetchData(); // This will run only once when the component mounts
+  }, []); // Empty dependency array means it will run once on mount
 
-      // Add more simulated listings as needed
-    ];
-
-    setListings(simulatedListings); // Update the component state with simulated data
-  }, []);
 
   const handleDistanceChange = (e) => {
     setDistance(e.target.value);
@@ -148,7 +116,7 @@ const Listings = () => {
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-
+          <button onClick={fetchData}>Load Data</button>
         </div>
 
         <div className="listingContainer">
