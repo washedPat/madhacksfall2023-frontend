@@ -12,81 +12,20 @@ const MyRentals = () => {
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
   const navigate = useNavigate();
 
+
+
   useEffect(() => {
-    // Simulated data for demonstration purposes
-    const simulatedMyListings = [
-      {
-        _id: '1',
-        parkingSize: 'Compact',
-        price: 25,
-        description: 'My Downtown Spot',
-        // other fields...
-      },
-      {
-        _id: '2',
-        parkingSize: 'Standard',
-        price: 20,
-        description: 'Home Garage',
-        // other fields...
-      },
-      {
-        _id: '3',
-        imageUrl: 'URL_TO_IMAGE_3',
-        location: 'City Center',
-        type: 'Garage',
-        price: '$25/day',
-        rating: 4.2,
-      },
-      {
-        _id: '4',
-        imageUrl: 'URL_TO_IMAGE_4',
-        location: 'Waterfront',
-        type: 'Covered',
-        price: '30',
-        rating: 4.9,
-      },
-      {
-        _id: '5',
-        imageUrl: 'URL_TO_IMAGE_5',
-        location: 'Parkside',
-        type: 'Open',
-        price: '$18/day',
-        rating: 3.5,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-    ];
-
-    setMyListings(simulatedMyListings);
-  }, []);
-
-  // const handleEdit = (listing) => {
-  //   setSelectedListing(listing);
-  //   navigate('/RegisterListing');
-  // };
-
-  // return (
-  //   <div className="mainContainer">
-  //     <div className="bodyContainer">
-  //       <div className="addBookingButton">
-  //         <Link to="/RegisterListing" className="addButton">
-  //           +
-  //         </Link>
-  //       </div>
-  //       <div className="myListingsContainer">
-  //         {myListings.map((listing) => (
-  //           <RentalsCard key={listing._id} listing={listing} />
-  //         ))}
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
+    if (loggedIn) {
+      fetch(`https://plot.fly.dev/api/getUserListings?username=${loggedIn}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then((response) => response.json())
+      .then((data) => setMyListings(data));
+    }
+  }, [myListings]); 
 
   if (loggedIn === null) {
     return (

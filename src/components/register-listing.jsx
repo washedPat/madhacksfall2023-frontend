@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoggedIn from '../contexts/LoggedIn';
 import './Listings.css';
 import './registerListing.css'
 
+
 const RegisterListing = () => {
+  const [loggedIn, setLoggedIn] = useContext(LoggedIn)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    createdBy: loggedIn,
+    bookedBy: '',
     parkingSize: '',
     price: 0,
     title: '',

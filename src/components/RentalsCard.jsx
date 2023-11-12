@@ -1,6 +1,9 @@
 import React from 'react';
 
 function RentalsCard({ listing }) {
+
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString("en-US");
+  
   function handleRemove () {
     // Call the onEdit callback with the current listing
     // remove Listing from the database
@@ -9,17 +12,24 @@ function RentalsCard({ listing }) {
   };
 
   return (
-    <div className="listingCard">ß
-      <img src={listing.imageUrl} alt="Parking Spot" className="listingImage" />
-      <h3 className="listingTitle">{listing.location}</h3>
-      <p className="listingInfo">Type: {listing.type}</p>
-      <p className="listingInfo">Price: {listing.price}</p>
-      <p className="listingInfo">Rating: {listing.rating}</p>
+    <div className="listingCard">
+    <img src={listing.photoURL} alt="Parking Spot" className="listingImage" />
+    <h3 className="listingTitle">{listing.title}</h3> {/* The JSON doesn't have a title field, so using a generic title */}
+    <p className="listingInfo">Parking Size: {listing.parkingSize}</p>
+    <p className="listingInfo">Price: ${listing.price}</p>
+    <p className="listingInfo">Description: {listing.description}</p>
+    <p className='listingInfo'>Date: {formatDate(listing.startDate)} - {formatDate(listing.endDate)}</p>
+    <p className='listingInfo'>Address: {listing.address.street}, {listing.address.city}, {listing.address.state} {listing.address.zip} {listing.address.country}</p>
       <button className="listingButton" onClick={handleRemove}>
         Remove
       </button>
     </div>
   );
+
+
+
+
+
 }
 
 export default RentalsCard;
