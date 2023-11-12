@@ -1,11 +1,14 @@
 import React, {useRef} from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login ({ onLogin }) {
 
   const username = useRef("");
   const password = useRef("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+ 
   const navigate = useNavigate();
 
   function handleSubmit (e) {
@@ -16,9 +19,12 @@ function Login ({ onLogin }) {
       password: password.current.value,
     };
     
-    if (onLogin(credentials)) {
+    onLogin(credentials, (isLoggedIn) => {
+      setIsLoggedIn(isLoggedIn);
+      if (isLoggedIn) {
         navigate('/');
-    }
+      }
+    });
   }
 
   return (

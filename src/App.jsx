@@ -28,7 +28,7 @@ function App() {
   }, [loggedIn])
 
 
-  function handleLogin (credentials) {
+  function handleLogin (credentials, callback) {
     if (credentials.username === '' || credentials.password === '') {
       alert('Empty values. Please input a valid username and password.');
       return false;
@@ -59,16 +59,16 @@ function App() {
       if (json.message == "OK") {
         alert("You have been logged in! Please navigate to your desired section")
         setLoggedIn(json.data.username)
-        return true
+        callback(true)
       }
       else {
         alert(json.message)
-        return false
+        callback(false)
       }
     })
   }
   
-  function handleRegister (credentials) {
+  function handleRegister (credentials, callback) {
     
     if (credentials.username === '' || credentials.password === '') {
       alert('Empty values. Please input a valid username and password.');
@@ -101,12 +101,12 @@ function App() {
         console.log(json) // delete later
         alert("You have been registered and logged in! Please navigate to your desired section")
         setLoggedIn(json.data.username)
-        return true
+        callback(true)
       }
       else {
         console.log(json) // delete later
         alert(json.message)
-        return false
+        callback(false)
       }
     })
   }

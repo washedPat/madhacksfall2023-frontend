@@ -27,7 +27,8 @@ const Listings = () => {
           "address": currentStreet,
           "distance": distance,
           "spotType": parkingSize,
-
+          "startDate": startDateISO,
+          "endDate": endDateISO,
 
         }),
         headers: {
@@ -38,7 +39,7 @@ const Listings = () => {
         .then((data) => setListings(data));
     }
   };
-
+  console.log(listings)
   // Call fetchData when component mounts
   useEffect(() => {
     fetchData(); // This will run only once when the component mounts
@@ -77,6 +78,7 @@ const Listings = () => {
         <div className="filterContainer">
           {/* Side box for filtering */}
           <h2>Filters</h2>
+          <h5>All filters required for plots to show</h5>
           <label htmlFor="location">Street Address:</label>
           <input
             type="text"

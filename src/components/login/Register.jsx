@@ -1,11 +1,11 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Register ({ onRegister }) {
 
   const username = useRef("");
   const password = useRef("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const navigate = useNavigate();
 
   function handleSubmit (e) {
@@ -16,9 +16,12 @@ function Register ({ onRegister }) {
       password: password.current.value,
     };
     
-    if (onRegister(credentials)) {
+    onRegister(credentials, (isLoggedIn) => {
+      setIsLoggedIn(isLoggedIn);
+      if (isLoggedIn) {
         navigate('/');
-    }
+      }
+    });
   }
 
   return (
