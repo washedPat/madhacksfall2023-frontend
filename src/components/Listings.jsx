@@ -44,10 +44,12 @@ const Listings = () => {
 
 
   const handleDistanceChange = (e) => {
-    setDistance(e.target.value);
+    // setDistance(e.target.value);
+    setDistance(parseInt(e.target.value, 10));
   };
   const handlePriceChange = (e) => {
-    setPrice(e.target.value);
+    // setPrice(e.target.value);
+    setPrice(parseInt(e.target.value, 10));
   };
   const handleParkingSizeChange = (e) => {
     SetParkingSize(e.target.value);
@@ -120,9 +122,13 @@ const Listings = () => {
         </div>
 
         <div className="listingContainer">
-        {listings.map((listing) => (
-          <Card key={listing._id} listing={listing} /> // Use the Card component
-        ))}
+        {listings.length === 0 ? (
+          <div>No listings</div>
+        ) : (
+          listings.map((listing) => (
+            <Card key={listing._id} listing={listing} />
+          ))
+        )}
       </div>
       </div>
     </div>
