@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './listings.css';
 
@@ -7,14 +7,11 @@ const RegisterListing = () => {
   const [formData, setFormData] = useState({
     parkingSize: '',
     price: 0,
+    title: '',
     description: '',
     photoURL: '',
-    startDate:  new Date().toISOString(), // new Date().toISOString()
-    endDate:  new Date().toISOString(), // new Date().toISOString()
-    location: {
-      lat: 0,
-      long: 0,
-    },
+    startDate: '', // Updated format: 'YYYY-MM-DDTHH:mm:ss.sssZ'
+    endDate: '', // Updated format: 'YYYY-MM-DDTHH:mm:ss.sssZ'
     address: {
       street: '',
       city: '',
@@ -26,34 +23,30 @@ const RegisterListing = () => {
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-
-    // If the input type is 'number', convert the value to a number
-    const processedValue = type === 'number' ? parseFloat(value) : value;
-
+    let processedValue = value;
+  
+    if (type === 'number') {
+      processedValue = parseFloat(value);
+    } else if (type === 'date') {
+      // Convert to ISO string with 'Z' for the POST request
+      const formattedDateForPost = new Date(value).toISOString()
+      processedValue = formattedDateForPost;
+    }
+  
     setFormData((prevData) => ({
       ...prevData,
       [name]: processedValue,
     }));
   };
-
+  
+  
   const handleLocationChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      location: {
-        ...prevData.location,
-        [name]: parseFloat(value), // Convert to a number
-      },
-    }));
-  };
-
-  const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       address: {
         ...prevData.address,
-        [name]: name === 'zip' ? parseFloat(value) : value, // Convert zip to a number
+        [name]: name === 'zip' ? parseFloat(value) : value,
       },
     }));
   };
@@ -61,7 +54,9 @@ const RegisterListing = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('https://plot.fly.dev/api/createListing', {
+    const apiUrl = 'https://plot.fly.dev/api/createListing';
+
+    fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,15 +84,19 @@ const RegisterListing = () => {
     <div className="mainContainer">
       <div className="bodyContainer">
         <form onSubmit={handleSubmit} className="formContainer">
-          {/* Your form fields */}
+          {/* Form fields with values from formData */}
           <label htmlFor="parkingSize">Parking Size:</label>
-          <input
-            type="text"
+          <select
             id="parkingSize"
             name="parkingSize"
             value={formData.parkingSize}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select Parking Size</option>
+            <option value="Tight">Tight</option>
+            <option value="Normal">Normal</option>
+            <option value="Wide">Wide</option>
+          </select>
 
           <label htmlFor="price">Price:</label>
           <input
@@ -105,6 +104,15 @@ const RegisterListing = () => {
             id="price"
             name="price"
             value={Number(formData.price)}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
             onChange={handleChange}
           />
 
@@ -131,41 +139,16 @@ const RegisterListing = () => {
             id="startDate"
             name="startDate"
             value={formData.startDate}
-            onChange={(e) => {
-                const isoDateString = new Date(e.target.value).toISOString();
-                handleChange({ target: { name: 'startDate', value: isoDateString } });
-            }}
+            onChange={handleChange}
           />
 
-        <label htmlFor="endDate">End Date:</label>
-        <input
+          <label htmlFor="endDate">End Date:</label>
+          <input
             type="date"
             id="endDate"
             name="endDate"
             value={formData.endDate}
-            onChange={(e) => {
-                const isoDateString = new Date(e.target.value).toISOString();
-                handleChange({ target: { name: 'endDate', value: isoDateString } });
-            }}
-        />
-
-
-          <label htmlFor="lat">Location Latitude:</label>
-          <input
-            type="number"
-            id="lat"
-            name="lat"
-            value={formData.location.lat}
-            onChange={handleLocationChange}
-          />
-
-          <label htmlFor="long">Location Longitude:</label>
-          <input
-            type="number"
-            id="long"
-            name="long"
-            value={formData.location.long}
-            onChange={handleLocationChange}
+            onChange={handleChange}
           />
 
           <label htmlFor="street">Street:</label>
@@ -174,7 +157,7 @@ const RegisterListing = () => {
             id="street"
             name="street"
             value={formData.address.street}
-            onChange={handleAddressChange}
+            onChange={handleLocationChange}
           />
 
           <label htmlFor="city">City:</label>
@@ -183,7 +166,7 @@ const RegisterListing = () => {
             id="city"
             name="city"
             value={formData.address.city}
-            onChange={handleAddressChange}
+            onChange={handleLocationChange}
           />
 
           <label htmlFor="state">State:</label>
@@ -192,7 +175,7 @@ const RegisterListing = () => {
             id="state"
             name="state"
             value={formData.address.state}
-            onChange={handleAddressChange}
+            onChange={handleLocationChange}
           />
 
           <label htmlFor="country">Country:</label>
@@ -201,7 +184,7 @@ const RegisterListing = () => {
             id="country"
             name="country"
             value={formData.address.country}
-            onChange={handleAddressChange}
+            onChange={handleLocationChange}
           />
 
           <label htmlFor="zip">Zip:</label>
@@ -210,7 +193,7 @@ const RegisterListing = () => {
             id="zip"
             name="zip"
             value={Number(formData.address.zip)}
-            onChange={handleAddressChange}
+            onChange={handleLocationChange}
           />
 
           <button type="submit" className="submitButton">
