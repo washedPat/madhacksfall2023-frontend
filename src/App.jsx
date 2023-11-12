@@ -14,7 +14,7 @@ import Header from './components/Header';
 import RegisterListing from './components/register-listing';
 import BookingNow from './components/BookingNow'
 // context 
-import LoggedIn from './contexts/loggedin';
+import LoggedIn from './contexts/LoggedIn';
 
 
 function App() {
