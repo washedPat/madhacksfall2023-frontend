@@ -18,7 +18,7 @@ const Header = ({ loggedIn }) => {
               <Link to="/Register">Register</Link> | <Link to="/Login">Login</Link>
             </>
           )}
-          | <Link to="/Listings">Listings</Link> | <Link to="/MyRentals">My Rentals</Link> | <Link to="/Profile">Profile</Link>
+          | <Link to="/Listings">Rent a Listing</Link> | <Link to="/MyRentals">My Listings</Link> | <Link to="/Profile">Booked Listings</Link>
         </div>
       </nav>
     </header>

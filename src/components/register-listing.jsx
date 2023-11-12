@@ -22,18 +22,24 @@ const RegisterListing = () => {
     },
   });
 
+  const formatDatesForPost = (data) => {
+    return {
+      ...data,
+      startDate: data.startDate ? new Date(data.startDate).toISOString() : '',
+      endDate: data.endDate ? new Date(data.endDate).toISOString() : '',
+    };
+  };
+
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     let processedValue = value;
   
     if (type === 'number') {
       processedValue = parseFloat(value);
-    } else if (type === 'date') {
-      // Convert to ISO string with 'Z' for the POST request
-      const formattedDateForPost = new Date(value).toISOString()
-      processedValue = formattedDateForPost;
     }
   
+    // Update the formData state directly with the value for non-date fields
     setFormData((prevData) => ({
       ...prevData,
       [name]: processedValue,
@@ -55,6 +61,8 @@ const RegisterListing = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formattedDataForPost = formatDatesForPost(formData);
+    console.log(formattedDataForPost)
     const apiUrl = 'https://plot.fly.dev/api/createListing';
 
     fetch(apiUrl, {
@@ -63,7 +71,7 @@ const RegisterListing = () => {
         'Content-Type': 'application/json',
         // Add any additional headers if needed
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formattedDataForPost),
     })
       .then((response) => {
         if (!response.ok) {

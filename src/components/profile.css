@@ -1,0 +1,116 @@
+/* myrentals.css */
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width to stretch across the screen */
+  }
+  
+  .bodyContainer {
+    display: flex;
+    justify-content: space-between; /* Align children with space between */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+    max-width: 1200px; /* Maximum width of the body container */
+    margin: auto; /* Center the body container */
+  }
+  
+  .addBookingButton {
+    margin-right: 20px; /* Add some space to the right of the button */
+  }
+  
+  .addButton {
+    text-decoration: none;
+    background-color: #265c28; /* Use a nice green color */
+    color: white;
+    padding: 10px;
+    border-radius: 50%; /* Circular button */
+    display: inline-block;
+    text-align: center;
+    font-size: 24px; /* Larger font size for the "+" */
+    width: 50px; /* Fixed width */
+    height: 50px; /* Fixed height */
+    line-height: 30px; /* Center the "+" vertically */
+  }
+  
+  .myListingsContainer {
+    flex-grow: 1; /* Take the remaining space */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add space between cards */
+    justify-content: flex-start; /* Align cards to the start of the container */
+  }
+  
+  
+    
+    /* Basic style for each card */
+    .Card {
+  
+      padding: 10px;
+      width: 100px; /* Width based on image size */
+      text-align: center;
+    }
+    
+    /* Style for error message */
+    .error {
+      color: red;
+      padding: 10px;
+    }
+  
+  /* Style for the card container */
+  .listingCard {
+      border: 1px solid #aecdab;
+      padding: 16px;
+      width: 300px; /* Fixed width */
+      height: 500px; /* Fixed height */
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Style for the image in the card */
+    .listingImage {
+      width: 90%; /* Full width of the card */
+      height: 180px; /* Fixed height for the image */
+      border-radius: 4px;
+      object-fit: cover; /* Ensures the image covers the area without being stretched */
+      margin-bottom: 8px;
+    }
+    
+    /* Style for the title in the card */
+    .listingTitle {
+      font-size: 1.25rem; /* 20px */
+      color: #333;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    /* Style for the info text in the card */
+    .listingInfo {
+      font-size: 1rem; /* 16px */
+      color: #666;
+      margin-bottom: 4px;
+      flex-grow: 1; /* Allows the info area to fill the space */
+    }
+    
+    /* Style for the button in the card */
+    .listingButton {
+      padding: 8px 16px;
+      background-color: #126b34;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem; /* 16px */
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+    
+    .listingButton:hover {
+      background-color: #0c5327;
+    }
+    
