@@ -10,9 +10,10 @@ const Listings = () => {
   const [vehicleType, setVehicleType] = useState('');
   const [rating, setRating] = useState(0);
   const [electricVehicle, setElectricVehicle] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState('');
+  const [currentStreet, setCurrentStreet] = useState('');
+  const [currentCity, setCurrentCity] = useState('');
 
-  console.log("curr location", currentLocation)
+  console.log("curr location", currentStreet, currentCity)
   console.log("distance", distance)
   console.log("price", price)
   console.log("vt", vehicleType)
@@ -92,25 +93,36 @@ const Listings = () => {
   const handleElectricVehicleToggle = (e) => {
     setElectricVehicle(e.target.checked); // Toggle the state
   };
-  const handleLocationChange = (e) => {
-    setCurrentLocation(e.target.value);
+  const handleStreetChange = (e) => {
+    setCurrentStreet(e.target.value);
   };
+  const handleCityChange = (e) => {
+    setCurrentCity(e.target.value);
+  };
+
 
   return (
     <div className="mainContainer">
       <div className="bodyContainer">
         <div className="filterContainer">
           {/* Side box for filtering */}
-          <label htmlFor="location">Current Location:</label>
+          <h2>Filters</h2>
+          <label htmlFor="location">Street Address:</label>
           <input
             type="text"
-            id="location"
-            name="location"
-            value={currentLocation} // Set the input value to the state variable
-            onChange={handleLocationChange} // Update the state variable when the input changes
+            id="street"
+            name="street"
+            value={currentStreet} // Set the input value to the state variable
+            onChange={handleStreetChange} // Update the state variable when the input changes
           />
-
-          {/* Distance slider */}
+          <label htmlFor="location">City:</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={currentCity} // Set the input value to the state variable
+            onChange={handleCityChange} // Update the state variable when the input changes
+          />
           <label htmlFor="distance">Distance: {distance} miles</label>
           <input
             type="range"
@@ -122,8 +134,6 @@ const Listings = () => {
             value={distance}
             onChange={handleDistanceChange}
           />
-
-          {/* Price slider */}
           <label htmlFor="price">Price: ${price}</label>
           <input
             type="range"
@@ -135,8 +145,6 @@ const Listings = () => {
             value={price}
             onChange={handlePriceChange}
           />
-
-          {/* Dropdown selector for vehicle type */}
           <label htmlFor="vehicleType">Vehicle Type:</label>
           <select
             id="vehicleType"
@@ -149,8 +157,6 @@ const Listings = () => {
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-
-          {/* Rating slider */}
           <label htmlFor="rating">Rating: {rating}</label>
           <input
             type="range"
@@ -180,7 +186,6 @@ const Listings = () => {
         ))}
       </div>
       </div>
-      
     </div>
   );
 };
