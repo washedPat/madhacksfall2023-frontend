@@ -40,7 +40,7 @@
   
   /* Basic style for each card */
   .Card {
-    border: 1px solid #eaeaea;
+
     padding: 10px;
     width: 100px; /* Width based on image size */
     text-align: center;
@@ -54,12 +54,12 @@
 
 /* Style for the card container */
 .listingCard {
-    border: 1px solid #eaeaea;
+    border: 1px solid #aecdab;
     padding: 16px;
     width: 300px; /* Fixed width */
     height: 500px; /* Fixed height */
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@
   /* Style for the button in the card */
   .listingButton {
     padding: 8px 16px;
-    background-color: #007bff;
+    background-color: #126b34;
     color: white;
     border: none;
     border-radius: 4px;
@@ -106,6 +106,6 @@
   }
   
   .listingButton:hover {
-    background-color: #0056b3;
+    background-color: #0c5327;
   }
   
