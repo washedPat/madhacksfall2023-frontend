@@ -34,30 +34,24 @@
   }
   
   .myListingsContainer {
-    flex-grow: 1; /* Take the remaining space */
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Add space between cards */
-    justify-content: flex-start; /* Align cards to the start of the container */
+    gap: 20px;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;
+    box-sizing: border-box;
   }
   
-  
-    
-    /* Basic style for each card */
     .Card {
   
       padding: 10px;
-      width: 100px; /* Width based on image size */
+      width: 100px; 
       text-align: center;
     }
     
-    /* Style for error message */
-    .error {
-      color: red;
-      padding: 10px;
-    }
-  
-  /* Style for the card container */
+
   .listingCard {
       border: 1px solid #aecdab;
       padding: 16px;
@@ -70,7 +64,6 @@
       flex-direction: column;
     }
     
-    /* Style for the image in the card */
     .listingImage {
       width: 90%; /* Full width of the card */
       height: 180px; /* Fixed height for the image */

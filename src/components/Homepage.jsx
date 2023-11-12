@@ -8,7 +8,7 @@ function HomePage() {
   return (
 
     <div>
-          <h1 className="text-3xl font-bold">ParkBnB</h1>
+          <h1 className="text-3xl font-bold">Reserve your next parking plot</h1>
     </div>
    
   );
