@@ -1,15 +1,9 @@
 import React from 'react';
 
-function RentalsCard({ listing }) {
+function RentalsCard({ listing, handleRemove}) {
 
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString("en-US");
-  
-  function handleRemove () {
-    // Call the onEdit callback with the current listing
-    // remove Listing from the database
-    // no editing allowed
-    console.log("REMOVE:", listing)
-  };
+
 
   return (
     <div className="listingCard">
@@ -20,9 +14,8 @@ function RentalsCard({ listing }) {
     <p className="listingInfo">Description: {listing.description}</p>
     <p className='listingInfo'>Date: {formatDate(listing.startDate)} - {formatDate(listing.endDate)}</p>
     <p className='listingInfo'>Address: {listing.address.street}, {listing.address.city}, {listing.address.state} {listing.address.zip} {listing.address.country}</p>
-      <button className="listingButton" onClick={handleRemove}>
-        Remove
-      </button>
+    <button className="listingButton" onClick={() => handleRemove(listing)}>Remove</button>
+    
     </div>
   );
 

@@ -7,12 +7,38 @@ import LoggedIn from '../contexts/LoggedIn';
 
 const MyRentals = () => {
   const [myListings, setMyListings] = useState([]);
-  const [selectedListing, setSelectedListing] = useState(null);
-  const [error, setError] = useState(null);
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
   const navigate = useNavigate();
 
 
+  function handleRemove(listing){
+    console.log(listing)
+    fetch(`https://plot.fly.dev/api/removeListing`, {
+      method: "POST",
+      body: JSON.stringify({
+        "listingID": listing.id,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json()
+      }
+      else if (res.status === 400) {
+        return res.json()
+      } else if (res.status === 500) {
+        return res.json()
+      }
+    }).then(json => {
+      if (json.message == "OK") {
+        alert("Booking Deleted")
+      }
+      else {
+        alert(json.message)
+      }
+    })
+  };
 
   useEffect(() => {
     if (loggedIn) {
@@ -48,7 +74,7 @@ const MyRentals = () => {
           </div>
           <div className="myListingsContainer">
             {myListings.map((listing) => (
-              <RentalsCard key={listing._id} listing={listing} />
+              <RentalsCard key={listing._id} listing={listing} handleRemove={handleRemove} />
             ))}
           </div>
         </div>
