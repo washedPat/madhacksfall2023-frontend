@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './myrentals.css';
 import RentalsCard from './RentalsCard';
-import LoggedIn from '../contexts/Loggedin';
+import LoggedIn from '../contexts/LoggedIn';
 
 const MyRentals = () => {
   const [myListings, setMyListings] = useState([]);

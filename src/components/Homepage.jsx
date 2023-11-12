@@ -1,6 +1,6 @@
 // Import necessary React library
 import React, { useContext }from 'react';
-import LoggedIn from '../contexts/Loggedin';
+import LoggedIn from '../contexts/LoggedIn';
 // Define the Home component
 function HomePage() {
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
