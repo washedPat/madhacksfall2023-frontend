@@ -1,138 +1,111 @@
 /* listings.css */
-body {
-    overflow: hidden; /* Hide the scroll wheel */
-}
-
 .mainContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
     display: flex;
-    flex-direction: column; /* Adjusted to a column layout */
-    align-items: center;
-    padding: 20px;
-    background-color: #4b5563; /* Updated to match the background color from Next.js */
-}
-
-.bodyContainer {
-    margin-top: 100px; /* Adjusted margin-top to leave space for the header */
-    display: flex;
-    gap: 20px;
-}
-
-.filterContainer {
-    height: 65%;
-    width: 15%;
-    background-color: #2d3748; /* Updated to match the background color from Next.js */
-    padding: 15px;
-    border-radius: 10px;
-    gap: 5px;
-    display: flex;
-    flex-direction: column; /* Updated to a column layout */
-}
-
-
-.listingContainer {
-    height: 69%;
-    width: 45%;
-    flex-grow: 1;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    border-radius: 10px;
-    /* Hide the scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-}
-
-.listingContainer::-webkit-scrollbar {
-    width: 12px; /* Adjust the width as needed */
-}
-
-.listingContainer::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Adjust the background color as needed */
-}
-
-.listingContainer::-webkit-scrollbar-track {
-    background-color: transparent; /* Adjust the background color as needed */
-}
-
-.listingCard {
-    background-color: #2d3748; /* Updated to match the background color from Next.js */
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-}
-
-.listingImage {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.listingTitle {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    color: rgb(255, 255, 255);
-}
-
-.listingInfo {
-    color: rgb(107, 114, 128); /* Updated to match the text color from Next.js */
-    margin-top: 0.5rem;
-}
-
-.listingButton {
-    background-color: #48bb78; /* Updated to match the background color from Next.js */
-    color: rgb(255, 255, 255);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-}
-.myListingsContainer {
-    height: 65%;
-    width: 60%; /* Adjusted width for My Listings */
-    flex-grow: 1;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    border-radius: 10px;
-    /* Hide the scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-  }
-.myListingsContainer::-webkit-scrollbar {
-    width: 12px; /* Adjust the width as needed */
-}
-
-.myListingsContainer::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Adjust the background color as needed */
-}
-
-.myListingsContainer::-webkit-scrollbar-track {
-    background-color: transparent; /* Adjust the background color as needed */
-}
-.addBookingButton {
-    height: 65%;
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
   }
   
-  .addButton {
-    font-size: 2rem;
-    background-color: #4caf50; /* Green background color for the button */
-    color: #fff; /* White text color for the button */
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  .bodyContainer {
+    display: flex;
+  }
+  
+  .filterContainer {
+    flex-basis: 20%;
+    padding: 20px;
+    margin-right: 20px;
+    border-right: 2px solid #eaeaea;
+  }
+  
+  /* Style for labels and inputs */
+  .filterContainer label,
+  .filterContainer input,
+  .filterContainer select {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .filterContainer input[type="range"] {
+    width: 100%;
+  }
+  
+  /* Style for the listing container */
+  .listingContainer {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  /* Basic style for each card */
+  .Card {
+    border: 1px solid #eaeaea;
+    padding: 10px;
+    width: 100px; /* Width based on image size */
+    text-align: center;
+  }
+  
+  /* Style for error message */
+  .error {
+    color: red;
     padding: 10px;
   }
+
+/* Style for the card container */
+.listingCard {
+    border: 1px solid #eaeaea;
+    padding: 16px;
+    width: 300px; /* Fixed width */
+    height: 500px; /* Fixed height */
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Style for the image in the card */
+  .listingImage {
+    width: 90%; /* Full width of the card */
+    height: 180px; /* Fixed height for the image */
+    border-radius: 4px;
+    object-fit: cover; /* Ensures the image covers the area without being stretched */
+    margin-bottom: 8px;
+  }
+  
+  /* Style for the title in the card */
+  .listingTitle {
+    font-size: 1.25rem; /* 20px */
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Style for the info text in the card */
+  .listingInfo {
+    font-size: 1rem; /* 16px */
+    color: #666;
+    margin-bottom: 4px;
+    flex-grow: 1; /* Allows the info area to fill the space */
+  }
+  
+  /* Style for the button in the card */
+  .listingButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem; /* 16px */
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .listingButton:hover {
+    background-color: #0056b3;
+  }
+  

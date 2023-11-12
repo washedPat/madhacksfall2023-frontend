@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './listings.css'; // Import the regular CSS file
-
+import Card from './Card';
 const Listings = () => {
   const [listings, setListings] = useState([]);
   const [distance, setDistance] = useState(0);
@@ -62,6 +62,63 @@ const Listings = () => {
         price: '$22/day',
         rating: 4.0,
       },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      {
+        _id: '6',
+        imageUrl: 'URL_TO_IMAGE_6',
+        location: 'Industrial Area',
+        type: 'Garage',
+        price: '$22/day',
+        rating: 4.0,
+      },
+      
       // Add more simulated listings as needed
     ];
 
@@ -98,6 +155,7 @@ const Listings = () => {
             name="distance"
             min="0"
             max="100"
+            step="10"
             value={distance}
             onChange={handleDistanceChange}
           />
@@ -110,6 +168,7 @@ const Listings = () => {
             name="price"
             min="0"
             max="100"
+            step="1"
             value={price}
             onChange={handlePriceChange}
           />
@@ -137,24 +196,18 @@ const Listings = () => {
             name="rating"
             min="0"
             max="5"
-            step="0.1"
+            step=".5"
             value={rating}
             onChange={handleRatingChange}
           />
         </div>
+
         <div className="listingContainer">
-          {/* Grid of listing cards */}
-          {listings.map((listing) => (
-            <div key={listing._id} className="listingCard">
-              <img src={listing.imageUrl} alt="Parking Spot" className="listingImage" />
-              <h3 className="listingTitle">{listing.location}</h3>
-              <p className="listingInfo">Type: {listing.type}</p>
-              <p className="listingInfo">Price: {listing.price}</p>
-              <p className="listingInfo">Rating: {listing.rating}</p>
-              <button className="listingButton">Book Now</button>
-            </div>
-          ))}
-        </div>
+        {listings.map((listing) => (
+          <Card key={listing._id} listing={listing} /> // Use the Card component
+        ))}
+      </div>
+        
       </div>
       {error && <p>Error Code: {error}</p>}
     </div>
@@ -162,3 +215,4 @@ const Listings = () => {
 };
 
 export default Listings;
+
