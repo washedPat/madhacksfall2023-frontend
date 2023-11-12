@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Listings.css';
-import './registerlisting.css'
+import './registerListing.css'
 
 const RegisterListing = () => {
   const navigate = useNavigate();
