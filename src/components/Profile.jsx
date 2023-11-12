@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Profile.css';
+import './profile.css';
 import ProfileCard from './Profile-Card';
 import LoggedIn from '../contexts/LoggedIn';
 
