@@ -1,7 +1,7 @@
-// MyRentals.js
+
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './myrentals.css';
+import './MyRentals.css';
 import RentalsCard from './RentalsCard';
 import LoggedIn from '../contexts/LoggedIn';
 

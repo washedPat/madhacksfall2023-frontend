@@ -1,7 +1,7 @@
 // Listings.jsx
 
 import React, { useState, useEffect } from 'react';
-import './listings.css'; // Import the regular CSS file
+import './Listings.css'; // Import the regular CSS file
 import Card from './Card';
 const Listings = () => {
   const [listings, setListings] = useState([]);
