@@ -16,7 +16,6 @@ function RentalsCard({ listing }) {
       <p className="listingInfo">Type: {listing.type}</p>
       <p className="listingInfo">Price: {listing.price}</p>
       <p className="listingInfo">Rating: {listing.rating}</p>
-      {/* Call the handleEditClick function when the button is clicked */}
       <button className="listingButton" onClick={handleRemove}>
         Remove
       </button>

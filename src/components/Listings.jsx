@@ -39,11 +39,10 @@ const Listings = () => {
         .then((data) => setListings(data));
     }
   };
-  console.log(listings)
-  // Call fetchData when component mounts
+  
   useEffect(() => {
-    fetchData(); // This will run only once when the component mounts
-  }, []); // Empty dependency array means it will run once on mount
+    fetchData(); 
+  }, []); 
 
 
   const handleDistanceChange = (e) => {
