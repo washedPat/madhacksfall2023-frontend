@@ -21,7 +21,7 @@ function Profile () {
   const [myListings, setMyListings] = useState([]);
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
   const navigate = useNavigate();
-
+  console.log(loggedIn)
   useEffect(() => {
     // Simulated data for demonstration purposes
     const simulatedMyListings = [

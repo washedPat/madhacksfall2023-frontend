@@ -71,22 +71,51 @@ const MyRentals = () => {
   //   navigate('/RegisterListing');
   // };
 
-  return (
-    <div className="mainContainer">
-      <div className="bodyContainer">
-        <div className="addBookingButton">
-          <Link to="/RegisterListing" className="addButton">
-            +
-          </Link>
-        </div>
-        <div className="myListingsContainer">
-          {myListings.map((listing) => (
-            <RentalsCard key={listing._id} listing={listing} />
-          ))}
+  // return (
+  //   <div className="mainContainer">
+  //     <div className="bodyContainer">
+  //       <div className="addBookingButton">
+  //         <Link to="/RegisterListing" className="addButton">
+  //           +
+  //         </Link>
+  //       </div>
+  //       <div className="myListingsContainer">
+  //         {myListings.map((listing) => (
+  //           <RentalsCard key={listing._id} listing={listing} />
+  //         ))}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+  if (loggedIn === null) {
+    return (
+      <div className="mainContainer">
+        <div className="bodyContainer">
+          <p>Please login to view your rentals.</p>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+
+    // Render the main content if loggedIn is not null
+    return (
+      <div className="mainContainer">
+        <div className="bodyContainer">
+          <div className="addBookingButton">
+            <Link to="/RegisterListing" className="addButton">
+              +
+            </Link>
+          </div>
+          <div className="myListingsContainer">
+            {myListings.map((listing) => (
+              <RentalsCard key={listing._id} listing={listing} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default MyRentals;
