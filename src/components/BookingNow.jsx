@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import BookingCard from './BookingCard'; // Assuming the file is in the same directory
+import BookingCard from './bookingCard'; // Assuming the file is in the same directory
 import './BookingNow.css'; // Import your CSS file
 import LoggedIn from '../contexts/LoggedIn';
 

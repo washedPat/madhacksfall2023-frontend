@@ -3,10 +3,6 @@
 import React from 'react';
 
 function BookingCard({ listing, onConfirmBooking }) {
-  const handleConfirmBookingClick = () => {
-    onConfirmBooking(listing);
-  };
-
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString("en-US");
 
   return (
