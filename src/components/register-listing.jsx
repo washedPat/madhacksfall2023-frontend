@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './listings.css';
 
 const RegisterListing = () => {
-  // Access the navigate function for navigation
   const navigate = useNavigate();
-
-  // State to store form data
   const [formData, setFormData] = useState({
     parkingSize: '',
     price: '',
@@ -27,7 +24,6 @@ const RegisterListing = () => {
     },
   });
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -36,7 +32,6 @@ const RegisterListing = () => {
     }));
   };
 
-  // Handle location changes
   const handleLocationChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -48,7 +43,6 @@ const RegisterListing = () => {
     }));
   };
 
-  // Handle address changes
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -60,19 +54,37 @@ const RegisterListing = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform any necessary actions with the form data (e.g., send it to a backend)
-    console.log('Form Data:', formData);
-    // After successful submission, navigate back to the MyRentals page
-    navigate('/MyRentals');
+
+    fetch('https://plot.fly.dev/api/createListing', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add any additional headers if needed
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Success:', data);
+        navigate('/MyRentals');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle errors, show a message, etc.
+      });
   };
 
   return (
     <div className="mainContainer">
       <div className="bodyContainer">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formContainer">
           {/* Your form fields */}
           <label htmlFor="parkingSize">Parking Size:</label>
           <input
@@ -190,7 +202,9 @@ const RegisterListing = () => {
             onChange={handleAddressChange}
           />
 
-          <button type="submit">Submit</button>
+          <button type="submit" className="submitButton">
+            Submit
+          </button>
         </form>
       </div>
     </div>
