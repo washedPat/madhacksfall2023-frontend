@@ -11,6 +11,8 @@ import Login from './components/login/Login'
 import Register from './components/login/Register'
 import Logout from './components/login/Logout';
 import Header from './components/Header';
+import RegisterListing from './components/register-listing';
+
 // context 
 import LoggedIn from './contexts/loggedin';
 
@@ -127,10 +129,12 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/Listings" element = {<Listings />} />
             <Route path="/MyRentals" element={<MyRentals />} />
+            <Route path="/RegisterListing" element={<RegisterListing />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Login" element={<Login onLogin={handleLogin} />}/>
             <Route path="/Logout" element= {<Logout onLogout={handleLogout} />}/>
             <Route path='/Register' element={<Register onRegister={handleRegister}/>}/>
+            
           </Routes>
         </div>
       </BrowserRouter>

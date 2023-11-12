@@ -35,7 +35,7 @@ const MyRentals = () => {
       <div className="bodyContainer">
         <div className="addBookingButton">
           {/* Use the Link component from react-router-dom for navigation */}
-          <Link to="/register-listing">
+          <Link to="/RegisterListing">
             <a className="addButton">+</a>
           </Link>
         </div>
