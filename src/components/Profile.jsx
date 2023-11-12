@@ -1,16 +1,3 @@
-// import React from 'react';
-
-// function Profile() {
-//   return (
-
-//     <div>
-//           <h1 className="text-3xl font-bold">WILL HAVE THE BOOKED LISTINGS AND SAVED STUFF</h1>
-//     </div>
-   
-//   );
-// };
-
-// export default Profile;// MyRentals.js
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './profile.css';
@@ -22,71 +9,51 @@ function Profile () {
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
   const navigate = useNavigate();
   console.log(loggedIn)
+  
+  // useEffect(() => {
+    
+  //   fetch(`https://plot.fly.dev//api/getUserBookings?username=${loggedIn}`, {
+  //      method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => setMyListings(data));
+  //   }
+  // }, [loggedIn]);
+
   useEffect(() => {
-    // Simulated data for demonstration purposes
-    const simulatedMyListings = [
-      {
-        _id: '1',
-        parkingSize: 'Compact',
-        price: 25,
-        description: 'My Downtown Spot',
-        // other fields...
-      },
-      {
-        _id: '2',
-        parkingSize: 'Standard',
-        price: 20,
-        description: 'Home Garage',
-        // other fields...
-      },
-      {
-        _id: '3',
-        imageUrl: 'URL_TO_IMAGE_3',
-        location: 'City Center',
-        type: 'Garage',
-        price: '$25/day',
-        rating: 4.2,
-      },
-      {
-        _id: '4',
-        imageUrl: 'URL_TO_IMAGE_4',
-        location: 'Waterfront',
-        type: 'Covered',
-        price: '30',
-        rating: 4.9,
-      },
-      {
-        _id: '5',
-        imageUrl: 'URL_TO_IMAGE_5',
-        location: 'Parkside',
-        type: 'Open',
-        price: '$18/day',
-        rating: 3.5,
-      },
-      {
-        _id: '6',
-        imageUrl: 'URL_TO_IMAGE_6',
-        location: 'Industrial Area',
-        type: 'Garage',
-        price: '$22/day',
-        rating: 4.0,
-      },
-    ];
+    // Ensure loggedIn is not null or undefined
+    if (loggedIn) {
+      fetch(`https://plot.fly.dev/api/getUserBookings?username=${loggedIn}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then((response) => response.json())
+      .then((data) => setMyListings(data));
+    }
+  }, [loggedIn]); // Add loggedIn as a dependency to the useEffect hook
 
-    setMyListings(simulatedMyListings);
-  }, []);
+  console.log(myListings)
+  
 
-  const handleEdit = (listing) => {
-    setSelectedListing(listing);
-    navigate('/RegisterListing');
-  };
+  if (!loggedIn) {
+    return (
+      <div className="mainContainer">
+        <p>Please login to view your profile.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mainContainer">
       <div className="bodyContainer">
         <div className="myListingsContainer">
           {myListings.map((listing) => (
-            <ProfileCard key={listing._id} listing={listing} onEdit={handleEdit} />
+            <ProfileCard key={listing._id} listing={listing} />
           ))}
         </div>
       </div>
