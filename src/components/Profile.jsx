@@ -8,23 +8,38 @@ function Profile () {
   const [myListings, setMyListings] = useState([]);
   const [loggedIn, setLoggedIn] = useContext(LoggedIn);
   const navigate = useNavigate();
-  console.log(loggedIn)
   
-  // useEffect(() => {
-    
-  //   fetch(`https://plot.fly.dev//api/getUserBookings?username=${loggedIn}`, {
-  //      method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => setMyListings(data));
-  //   }
-  // }, [loggedIn]);
+  function handleUnbook(listing){
+    console.log(listing)
+    fetch(`https://plot.fly.dev/api/removeBooking`, {
+      method: "POST",
+      body: JSON.stringify({
+        "bookingID": listing.id,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        return res.json()
+      }
+      else if (res.status === 400) {
+        return res.json()
+      } else if (res.status === 500) {
+        return res.json()
+      }
+    }).then(json => {
+      if (json.message == "OK") {
+        alert("Booking Removed")
+
+      }
+      else {
+        alert(json.message)
+      }
+    })
+  };
 
   useEffect(() => {
-    // Ensure loggedIn is not null or undefined
     if (loggedIn) {
       fetch(`https://plot.fly.dev/api/getUserBookings?username=${loggedIn}`, {
         method: "GET",
@@ -35,15 +50,12 @@ function Profile () {
       .then((response) => response.json())
       .then((data) => setMyListings(data));
     }
-  }, [loggedIn]); // Add loggedIn as a dependency to the useEffect hook
-
-  console.log(myListings)
-  
+  }, [myListings]); 
 
   if (!loggedIn) {
     return (
       <div className="mainContainer">
-        <p>Please login to view your profile.</p>
+        <p>Please login to view your booked listings.</p>
       </div>
     );
   }
@@ -53,7 +65,7 @@ function Profile () {
       <div className="bodyContainer">
         <div className="myListingsContainer">
           {myListings.map((listing) => (
-            <ProfileCard key={listing._id} listing={listing} />
+            <ProfileCard key={listing._id} listing={listing} handleUnbook={handleUnbook} />
           ))}
         </div>
       </div>

@@ -23,8 +23,8 @@ function BookingCard({ listing, onConfirmBooking }) {
         </div>
       </div>
       <div className="confirmationSection">
-        <button className="bookingButton" onClick={handleConfirmBookingClick}>
-          Reserve PLOT
+        <button className="bookingButton" onClick={() => onConfirmBooking(listing)}>
+          Reserve Plot
         </button>
       </div>
     </div>
