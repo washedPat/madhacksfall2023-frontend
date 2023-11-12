@@ -5,59 +5,43 @@ import './listings.css'; // Import the regular CSS file
 import Card from './Card';
 const Listings = () => {
   const [listings, setListings] = useState([]);
-  const [distance, setDistance] = useState(0);
-  const [price, setPrice] = useState(0); // State for pricing
-  const [parkingSize, SetParkingSize] = useState('');
+  const [distance, setDistance] = useState(100);
+  const [price, setPrice] = useState(100); // State for pricing
+  const [parkingSize, SetParkingSize] = useState('Normal');
   const [currentStreet, setCurrentStreet] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   // start and end date
 
-  console.log("curr location", currentStreet, currentCity)
-  console.log("distance", distance)
-  console.log("price", price)
-  console.log("vt", parkingSize)
-  
+  // console.log("curr location", currentStreet, currentCity)
+  // console.log("distance", distance)
+  // console.log("price", price)
+  // console.log("vt", parkingSize)
+  console.log(listings)
+  function fetchData () {
+    if (currentStreet !== '' && currentCity !== '') {
+      fetch("https://plot.fly.dev/api/queryListings", {
+       method: "POST",
+        body: JSON.stringify({
+          "maxPrice": price,
+          "city": currentCity,
+          "address": currentStreet,
+          "distance": distance,
+          "spotType": parkingSize,
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => setListings(data));
+    }
+  };
+
+  // Call fetchData when component mounts
   useEffect(() => {
-    // Simulated data for testing without a backend
-    const simulatedListings = [
-      {
-        _id: '1',
-        title: "PARKING SPOT",
-        imageUrl: 'https://th.bing.com/th/id/OIP.CxQ96svjDLG8m6OFPtAw9gHaJ4?pid=ImgDet&rs=1',
-        parking_size: 'Tight',
-        price: '$20/day',
-        description: "a parking spot",
-        start_date: "11/12/2023",
-        end_date: "11/14/2023",
-        street: "5567 173rd AVE SE",
-        city: "Bellevue",
-        state: "WA",
-        country: "United States",
-        zip: "98006"
-      },
+    fetchData(); // This will run only once when the component mounts
+  }, []); // Empty dependency array means it will run once on mount
 
-      {
-        _id: '2',
-        title: "Another PARKING SPOT",
-        imageUrl: 'https://th.bing.com/th/id/OIP.CxQ96svjDLG8m6OFPtAw9gHaJ4?pid=ImgDet&rs=1',
-        parking_size: 'Tight',
-        price: '$50/day',
-        description: "this parking spot is LIKE SO SOS SO SOSOSOSO NICe it is worth the price",
-        start_date: "11/12/2023",
-        end_date: "11/14/2023",
-        street: "5567 173rd AVE SE",
-        city: "Bellevue",
-        state: "WA",
-        country: "United States",
-        zip: "98006"
-      },
-      
-
-      // Add more simulated listings as needed
-    ];
-
-    setListings(simulatedListings); // Update the component state with simulated data
-  }, []);
 
   const handleDistanceChange = (e) => {
     setDistance(e.target.value);
@@ -132,7 +116,7 @@ const Listings = () => {
             <option value="Normal">Normal</option>
             <option value="Wide">Wide</option>
           </select>
-
+          <button onClick={fetchData}>Load Data</button>
         </div>
 
         <div className="listingContainer">

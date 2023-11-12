@@ -6,6 +6,7 @@ function Card({ listing }) {
   const handleBooking = () => {
     navigate('/BookingNow', { state: { listing } });
   };
+  console.log(listing)
   return (
     <div className="listingCard">
       <img src={listing.imageUrl} alt="Parking Spot" className="listingImage" />
